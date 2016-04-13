@@ -34,7 +34,6 @@ public class Vol {
         horaire = new Horaire(heure, minute);
         lieux = l;
         codeAvion = cA;
-
         lesVols.put(codeVol, this);
     }
 

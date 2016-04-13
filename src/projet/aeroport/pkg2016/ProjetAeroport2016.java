@@ -98,6 +98,16 @@ public class ProjetAeroport2016 {
                     Vol.afficherLesVols();
                     break;
                 }
+                case "5": //5- Afficher la liste des vols départs hashtable
+                {
+                    Vol.afficherLesVols();
+                    break;
+                }
+                case "6": //5- Afficher la liste des vols arrivées hashtable
+                {
+                    Vol.afficherLesVols();
+                    break;
+                }
 
                 case "0":
                     fini = true;
@@ -129,6 +139,7 @@ public class ProjetAeroport2016 {
         try {
             BufferedReader entree = new BufferedReader(new FileReader("ProgrammeVolsFA-16-v1.txt"));
             String ligne = null;
+            String vol = null;
             while ((ligne = entree.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(ligne, " ");
                 String numvol = st.nextToken();
@@ -136,7 +147,14 @@ public class ProjetAeroport2016 {
                 String minute = st.nextToken();
                 String lieu = st.nextToken();
                 String modelavion = st.nextToken();
-                System.out.println("Num Vol: " + numvol + " Heure : " + heure + " h " + minute + " lieu : " + lieu + " Modele : " + modelavion);
+                if(vol == null || !vol.equals(modelavion)){
+                 System.out.println("Num Vol: " + numvol + " Heure : " + heure + " h " + minute + " lieu : " + lieu + " Modele : " + modelavion + "ARRIVE");
+                 vol = modelavion;
+                }
+                else{
+                    System.out.println("Num Vol: " + numvol + " Heure : " + heure + " h " + minute + " lieu : " + lieu + " Modele : " + modelavion + "DEPART"); 
+                }
+               
             }
         } catch (IOException e) {
             System.out.println(" Fichier non trouvé ");
