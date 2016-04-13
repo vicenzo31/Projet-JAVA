@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  *
  * @author Vicenzo
  */
-public class ProjetAeroport2016 {
+public class MainAeroport {
 
     /**
      * @param args the command line arguments
