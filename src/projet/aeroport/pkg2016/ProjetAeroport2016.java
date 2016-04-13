@@ -22,12 +22,25 @@ public class ProjetAeroport2016 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
+        //Chargement des fichiers
+        System.out.println("********************************Chargement des fichiers********************************");
+        System.out.println("Chargement fichier Avion");
+        Avion.chargerFichierAvions();
+        System.out.println("Chargement fichier Vol");
+        Vol.chargerFichierVols();
+ 
+
+        
+        
+        // La partie 1 et la partie 2 sont obsolète pour le projet
+        //J'ai laissé cette partie pour montrer comment nous faisons pour lire un fichier
+        //Le but est de stocker les informations dans une hashtable
         System.out.println("********************************Test d'un menu********************************");
         boolean fini = false;
         while (fini == false) {
-            System.out.println(" 1- Lecture fichier liste des avions \n 2- Lecture fichier la liste des vols \n 0- Quitter le programme");
+            System.out.println(" 1- Lecture liste des avions \n 2- Lecture fichier la liste des vols \n 3- Afficher la liste des avions charger dans la hashtable\n 4- Afficher la liste des vols charger dans la hashtable\n0- Quitter le programme");
             Scanner sc = new Scanner(System.in);
             String str = sc.nextLine();
             switch (str) {
@@ -53,6 +66,7 @@ public class ProjetAeroport2016 {
                     try {
                         BufferedReader entree = new BufferedReader(new FileReader("ProgrammeVolsFA-16-v1.txt"));
                         String ligne = null;
+                        String vol = null;
                         while ((ligne = entree.readLine()) != null) {
                             StringTokenizer st = new StringTokenizer(ligne, " ");
                             String numvol = st.nextToken();
@@ -60,11 +74,28 @@ public class ProjetAeroport2016 {
                             String minute = st.nextToken();
                             String lieu = st.nextToken();
                             String modelavion = st.nextToken();
-                            System.out.println("Num Vol: " + numvol + " Heure : " + heure + " h " + minute + " lieu : " + lieu + " Modele : " + modelavion);
+                            if (vol == null || !modelavion.equals(vol)) {
+                                System.out.println("Num Vol: " + numvol + " Heure : " + heure + " h " + minute + " lieu : " + lieu + " Modele : " + modelavion + " ARRIVEE");
+                                vol = modelavion;
+                            } else if (vol.equals(modelavion)) {
+                                System.out.println("Num Vol: " + numvol + " Heure : " + heure + " h " + minute + " lieu : " + lieu + " Modele : " + modelavion + " DEPART");
+                            }
+
                         }
                     } catch (IOException e) {
                         System.out.println(" Fichier non trouvé ");
                     }
+                    break;
+                }
+                
+                case "3": //3- Afficher la liste des avions hashtable
+                {
+                    Avion.afficherLesAvions();
+                    break;
+                }
+                case "4": //4- Afficher la liste des vols hashtable
+                {
+                    Vol.afficherLesVols();
                     break;
                 }
 

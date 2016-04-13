@@ -5,8 +5,13 @@
  */
 package projet.aeroport.pkg2016;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -22,6 +27,7 @@ public class Avion {
     public Avion(String code, String nom) {
         this.code = code;
         this.nom = nom;
+        ensembleAvion.put(code, this);
     }
 
     public String getCode() {
@@ -33,13 +39,8 @@ public class Avion {
     }
 
     public String toString() {
-        String maChaine = "Avion numero " + code + "\n Nom : " + nom;
+        String maChaine = " Avion numero " + code + "\n Nom : " + nom;
         return maChaine;
-    }
-
-    public static Avion getAvionParCode(String code) {
-
-        return ensembleAvion.get(code);
     }
 
     public static String toStringAll() {
@@ -51,6 +52,34 @@ public class Avion {
 
         }
         return maChaine;
+    }
+
+    public static void afficherLesAvions() {
+        System.out.println(toStringAll());
+    }
+
+    public static void chargerFichierAvions() throws IOException {
+        try {
+            // Chemin absolu OU Chemin relatif : ajouter le fichier dans Project/Proprieties/Linked Ressources/New/File
+            BufferedReader entree = new BufferedReader(new FileReader("avionsFA-16-v1.txt"));
+
+            String ligne = entree.readLine();
+            while (ligne != null && ligne.length() > 3 && ligne != "") {
+                StringTokenizer st = new StringTokenizer(ligne);
+                String code = st.nextToken();
+                String nom = st.nextToken();
+                Avion avion = new Avion(code, nom);
+                //ligne suivante
+                ligne = entree.readLine();
+                //System.out.println(i++);
+            }
+            System.out.println("Chargement termine");
+            entree.close();
+            System.out.println("fichier ferme");
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
