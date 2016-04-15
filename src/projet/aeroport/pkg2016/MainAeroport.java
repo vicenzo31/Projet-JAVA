@@ -30,6 +30,8 @@ public class MainAeroport {
         Avion.chargerFichierAvions();
         System.out.println("Chargement fichier Vol");
         Vol.chargerFichierVols();
+        System.out.println("Chargement fichier Vol Arrivee");
+        VolArrive.chargerFichierVolsArrivee();
  
 
         
@@ -40,7 +42,7 @@ public class MainAeroport {
         System.out.println("********************************Test d'un menu********************************");
         boolean fini = false;
         while (fini == false) {
-            System.out.println(" 1- Lecture liste des avions \n 2- Lecture fichier la liste des vols \n 3- Afficher la liste des avions charger dans la hashtable\n 4- Afficher la liste des vols charger dans la hashtable\n0- Quitter le programme");
+            System.out.println(" 1- Lecture liste des avions \n 2- Lecture fichier la liste des vols \n 3- Afficher la liste des avions charger dans la hashtable\n 4- Afficher la liste des vols charger dans la hashtable\n 5- Afficher la liste des vols arrivés \n0- Quitter le programme");
             Scanner sc = new Scanner(System.in);
             String str = sc.nextLine();
             switch (str) {
@@ -98,12 +100,12 @@ public class MainAeroport {
                     Vol.afficherLesVols();
                     break;
                 }
-                case "5": //5- Afficher la liste des vols départs hashtable
+                case "5": //5- Afficher la liste des vols arrivés hashtable
                 {
-                    Vol.afficherLesVols();
+                    VolArrive.afficherLesVolsArrivee();;
                     break;
                 }
-                case "6": //5- Afficher la liste des vols arrivées hashtable
+                case "6": //5- Afficher la liste des vols départ hashtable
                 {
                     Vol.afficherLesVols();
                     break;

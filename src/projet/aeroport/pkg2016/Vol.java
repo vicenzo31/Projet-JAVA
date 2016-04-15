@@ -23,16 +23,16 @@ public class Vol {
     private String codeVol;
     private Horaire horaire;
     private String codeAvion;
-    private String lieux;
+    //private String lieux;
     private static Hashtable<String, Vol> lesVols = new Hashtable<String, Vol>();
 
     public Vol() {
     }
 
-    public Vol(String cV, int heure, int minute, String l, String cA) {
+    public Vol(String cV, int heure, int minute, /*String l,*/ String cA) {
         codeVol = cV;
         horaire = new Horaire(heure, minute);
-        lieux = l;
+        //lieux = l;
         codeAvion = cA;
         lesVols.put(codeVol, this);
     }
@@ -49,13 +49,13 @@ public class Vol {
         return horaire;
     }
 
-    public String getLieux() {
+    /*public String getLieux() {
         return lieux;
-    }
+    }*/
 
     @Override
     public String toString() {
-        return " Numero du vol: " + codeVol + "\n Horaire: " + horaire + "\n Lieux: " + lieux + "\n Code Avion: " + codeAvion + "\n Hall" + "\n Porte" + '\n';
+        return " Numero du vol: " + codeVol + "\n Horaire: " + horaire /*+ "\n Lieux: " + lieux */+ "\n Code Avion: " + codeAvion + "\n Hall" + "\n Porte" + '\n';
     }
 
     public void afficherVol() {
@@ -89,7 +89,7 @@ public class Vol {
                 int minute = Integer.parseInt(st.nextToken());
                 String lieux = st.nextToken();
                 String codeAvion = st.nextToken();
-                Vol newVol = new Vol(code, heure, minute, lieux, codeAvion);
+                Vol newVol = new Vol(code, heure, minute, /*lieux,*/ codeAvion);
                 //ligne suivante
                 ligne = entree.readLine();
             }
